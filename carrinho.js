@@ -22,7 +22,10 @@
         atualizarContador();
     }
  
-    const total = itens => itens.reduce((soma, i) => soma + porId[i.id].preco * i.qtd, 0);
+    // Soma em centavos (inteiros) para não acumular erro de ponto flutuante.
+    const centavos = p => Math.round(p.preco * 100);
+    const valorItem = i => centavos(porId[i.id]) * i.qtd / 100;
+    const total = itens => itens.reduce((soma, i) => soma + centavos(porId[i.id]) * i.qtd, 0) / 100;
     const quantidade = itens => itens.reduce((soma, i) => soma + i.qtd, 0);
  
     function adicionar(id) {
@@ -166,7 +169,7 @@
             mais.addEventListener('click', () => { alterarQtd(i.id, 1); renderCarrinho(); });
             qtd.append(menos, numero, mais);
  
-            const subtotal = el('div', 'item-subtotal', moeda.format(p.preco * i.qtd));
+            const subtotal = el('div', 'item-subtotal', moeda.format(valorItem(i)));
  
             const rem = el('button', 'btn btn-link btn-sm item-remover', 'Remover');
             rem.type = 'button';
@@ -200,7 +203,7 @@
             botao.textContent = 'Enviando...';
  
             const resumo = itens
-                .map(i => i.qtd + 'x ' + porId[i.id].nome + ' (' + moeda.format(porId[i.id].preco * i.qtd) + ')')
+                .map(i => i.qtd + 'x ' + porId[i.id].nome + ' (' + moeda.format(valorItem(i)) + ')')
                 .join('\n');
  
             const dados = new FormData(form);

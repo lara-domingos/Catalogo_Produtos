@@ -205,6 +205,14 @@ body {
     margin-bottom: 0;
 }
 
+#como-adotar .grupo-titulo {
+    width: 100%;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--cor-fundo-hover);
+    box-sizing: border-box;
+}
+
 .calopsita-idade {
     display: inline-block;
     color: #fff;
@@ -502,5 +510,160 @@ body {
     .calopsita-foto img,
     .produto-foto img {
         transition: none;
+    }
+}
+
+/* ---------- Carrinho ---------- */
+.nav-cart {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px;
+    color: var(--cor-borda);
+}
+
+.nav-cart:hover,
+.nav-cart:focus-visible {
+    color: #6f4a2e;
+}
+
+.cart-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background-color: #d9822b;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+}
+
+.cart-badge.bump {
+    animation: cart-bump 0.3s ease;
+}
+
+@keyframes cart-bump {
+    50% { transform: scale(1.35); }
+}
+
+.item-carrinho {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--cor-borda-clara);
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-unitario {
+    color: #6b5444;
+    font-size: 0.9rem;
+}
+
+.item-qtd {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-numero {
+    min-width: 24px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.item-subtotal {
+    min-width: 96px;
+    text-align: right;
+    font-weight: 700;
+    color: var(--cor-titulo);
+}
+
+.item-remover {
+    color: var(--cor-borda);
+}
+
+.carrinho-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    font-size: 1.4rem;
+    color: var(--cor-titulo);
+}
+
+@media (max-width: 575.98px) {
+    .item-carrinho {
+        grid-template-columns: 1fr auto;
+    }
+}
+
+/* ---------- Modal de vídeo do Chuveiro ---------- */
+#modalVideo .modal-dialog {
+    max-width: 850px;
+    margin: 1rem auto;
+    padding: 0 12px;
+}
+
+#modalVideo .modal-content {
+    overflow: hidden;
+    border: 1px solid var(--cor-borda-clara);
+    border-radius: 18px;
+    background-color: var(--cor-fundo);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+#modalVideo .modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--cor-borda-clara);
+}
+
+#modalVideo .modal-title {
+    color: var(--cor-titulo);
+    font-weight: 700;
+}
+
+#modalVideo .modal-body {
+    padding: 0;
+    background-color: #000;
+}
+
+#modalVideo video {
+    display: block;
+    width: 100%;
+    max-height: 75vh;
+    background-color: #000;
+}
+
+/* Fundo borrado ao abrir o modal */
+.modal-backdrop.show {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
+
+/* Cursor de clique somente na foto do Chuveiro */
+#loja-produtos img[src*="chuveiro.jpg"] {
+    cursor: pointer;
+}
+
+@media (max-width: 575.98px) {
+    #modalVideo .modal-dialog {
+        margin: 1rem auto;
+    }
+
+    #modalVideo video {
+        max-height: 65vh;
     }
 }
